@@ -254,7 +254,7 @@
         const schedule = [
             { label: "29 ABR", date: "2026-04-29", events: [
                 { id: "e1", time: "11h", title: "Deslocamento para Aeroporto de Belém", loc: "Trânsito para Aeroporto de Belém", uni: "Passeio", type: "car", desc: "XXX" },
-                { id: "e2", time: "13h20", title: "Decolagem voo LATAM 2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "LA2620", type: "plane", desc: "Voo BEL (13h20) x SLZ (14h25)." },
+                { id: "e2", time: "13h20", title: "Decolagem voo Azul 2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AD2620", type: "plane", desc: "Voo Azul AD 2620 BEL (13h20) x SLZ (14h25)." },
                 { id: "e3", time: "14h25", title: "Chegada ao Aeroporto de São Luiz - MA", loc: "Aeroporto São Luiz - MA", uni: "Passeio", desc: "" },
                 { id: "e4", time: "14h35", title: "Almoço", loc: "Restaurante em São Luiz", uni: "Passeio", desc: "" },
                 { id: "e5", time: "14h35", title: "Deslocamento para Hotel Premier", loc: "Trânsito para Hotel Premier", uni: "Passeio", type: "car", desc: "Tempo de deslocamento: 25 minutos." },
@@ -428,15 +428,15 @@
                         <div><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Hora Local</p><span class="text-navy font-black text-lg"><i class="fas fa-clock text-gold mr-2"></i>${event.time}</span></div>
                         <div class="text-right"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Uniforme</p><span class="bg-navy text-white px-4 py-1.5 rounded-xl font-bold text-[11px] uppercase">${event.uni}</span></div>
                     </div>
-                    <div class="text-left">
+                    <div class="text-left text-left">
                         <p class="text-[11px] font-bold text-slate-400 uppercase mb-1">Atividade</p>
                         <p class="text-2xl font-extrabold text-navy leading-tight mb-2">${event.title}</p>
                         ${event.theme ? `<p class="text-sm text-slate-600 italic font-medium">"${event.theme}"</p>` : ''}
                     </div>
                     <div class="bg-white p-6 rounded-[32px] border-l-8 border-gold shadow-sm">
-                        <p class="text-[11px] font-bold text-gold uppercase mb-4 tracking-widest text-left">Observações</p>
+                        <p class="text-[11px] font-bold text-gold uppercase mb-4 tracking-widest text-left text-left">Observações</p>
                         ${event.speaker ? `<p class="font-bold mb-3 text-navy text-left text-lg">Palestrante: <br><span class="font-medium text-slate-600 text-sm">${event.speaker}</span></p>` : ''}
-                        <div class="text-[15px] leading-relaxed text-slate-700 font-medium text-left">
+                        <div class="text-[15px] leading-relaxed text-slate-700 font-medium text-left text-left">
                             ${finalOutputHtml}
                         </div>
                     </div>
