@@ -51,7 +51,7 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Marcador de tempo AGORA (Azul Marinho para evitar vermelho) */
+        /* Marcador de tempo AGORA (Azul Marinho) */
         .current-time-line {
             display: flex;
             align-items: center;
@@ -84,7 +84,7 @@
         }
 
         @keyframes pulse {
-            0 { transform: scale(1); opacity: 1; }
+            0% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.1); opacity: 0.7; }
             100% { transform: scale(1); opacity: 1; }
         }
@@ -118,7 +118,7 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estilos Localizador (Removido Vermelho) */
+        /* Estilos Localizador (Sem Vermelho) */
         .boarding-pass {
             background: white;
             border-radius: 20px;
@@ -127,15 +127,15 @@
             max-width: 350px;
             margin: 0 auto;
         }
-        .pass-azul { border-top: 8px solid #002D5E; }
-        .pass-latam { border-top: 8px solid #1e293b; } /* Cinza Ardósia em vez de vermelho */
+        .pass-azu { border-top: 8px solid #002D5E; }
+        .pass-lan { border-top: 8px solid #1e293b; }
 
         .pass-header {
             padding: 20px;
             color: white;
         }
-        .bg-azul { background-color: #002D5E; }
-        .bg-latam { background-color: #1e293b; } /* Cinza Ardósia em vez de vermelho */
+        .bg-azu { background-color: #002D5E; }
+        .bg-lan { background-color: #1e293b; }
 
         .pass-cut {
             border-top: 2px dashed #e2e8f0;
@@ -186,19 +186,19 @@
                 </div>
                 
                 <div class="flex flex-col items-center flex-shrink-0">
-                    <p class="text-[9px] font-bold text-white uppercase tracking-wider mb-1.5 opacity-90 text-center">Downloads</p>
+                    <p class="text-[9px] font-bold text-white uppercase tracking-wider mb-1.5 opacity-90 text-center">Programas:</p>
                     <div class="flex gap-2">
                         <div class="flex flex-col items-center group touch-target cursor-pointer">
                             <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10">
                                 <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
-                            <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">Programa</span>
+                            <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">São Luís</span>
                         </div>
                         <div class="flex flex-col items-center group touch-target cursor-pointer">
                             <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10">
-                                <i class="fas fa-book text-blue-400"></i>
+                                <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
-                            <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">Livreto</span>
+                            <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">CPPI</span>
                         </div>
                     </div>
                 </div>
@@ -207,9 +207,9 @@
 
         <!-- Menu Principal -->
         <nav class="grid grid-cols-5 gap-1.5 px-3 pb-3">
-            <button onclick="openModal('convidados')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
+            <button onclick="openModal('palestrantes')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
                 <i class="fas fa-users text-gold text-xs sm:text-sm"></i>
-                <span class="text-[7px] sm:text-[8px] font-bold uppercase mt-1 text-center leading-tight">Convidados Seminário</span>
+                <span class="text-[7px] sm:text-[8px] font-bold uppercase mt-1 text-center leading-tight">Palestrantes</span>
             </button>
             <button onclick="openModal('estadia')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
                 <i class="fas fa-hotel text-gold text-xs sm:text-sm"></i>
@@ -276,7 +276,7 @@
         const schedule = [
             { label: "29 ABR", date: "2026-04-29", events: [
                 { id: "e1", time: "11h", title: "Deslocamento para o Aeroporto Internacional de Belém", loc: "Trânsito", uni: "Passeio", type: "car", desc: "XXX" },
-                { id: "e2", time: "13h20", title: "Decolagem voo Azul 2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AD 2620 BEL (13h20) x SLZ (14h25). Localizador: HLP5WJ" },
+                { id: "e2", time: "13h20", title: "Decolagem voo Azul AZU2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AZU 2620 BEL (13h20) x SLZ (14h25). Localizador: HLP5WJ" },
                 { id: "e3", time: "14h25", title: "Chegada ao Aeroporto de São Luiz - MA", loc: "Aeroporto de São Luiz - MA", uni: "Passeio", desc: "" },
                 { id: "e4", time: "14h35", title: "Almoço", loc: "Restaurante", uni: "Passeio", desc: "" },
                 { id: "e5", time: "14h35", title: "Deslocamento para Hotel Premier", loc: "Trânsito", uni: "Passeio", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
@@ -338,9 +338,9 @@
             { label: "04 MAI", date: "2026-05-04", events: [
                 { id: "e52", time: "04h30", title: "Check-out", loc: "Hotel Cívico", uni: "Passeio", desc: "Participantes: DN-02, CP-01\nViatura: Yaris" },
                 { id: "e53", time: "05h00", title: "Deslocamento para Aeroporto", loc: "Trânsito para Teresina", uni: "Passeio", type: "car", desc: "Tempo Médio de deslocamento: 5h" },
-                { id: "e54", time: "10h00", title: "Chegada ao Aeroporto de Teresina - PI", loc: "Aeroporto de Teresina", uni: "Passeio", desc: "Voo LATAM LA 3492 Localizador: AAHZSR\nVoo LATAM LA 3524 Localizador: AAHZSR" },
-                { id: "e55", time: "12h15", title: "Decolagem voo LATAM 3492", loc: "Aeroporto de Teresina", uni: "Passeio", flight: "LAN3492", type: "plane", desc: "Voo THE (12h15) x FOR (13h25). Localizador: AAHZSR" },
-                { id: "e56", time: "14h30", title: "Decolagem voo LATAM 3524", loc: "Aeroporto Fortaleza", uni: "Passeio", flight: "LAN3524", type: "plane", desc: "Voo FOR (14h30) x BEL (16h30). Localizador: AAHZSR" },
+                { id: "e54", time: "10h00", title: "Chegada ao Aeroporto de Teresina - PI", loc: "Aeroporto de Teresina", uni: "Passeio", desc: "Voo LAN LAN 3492 Localizador: AAHZSR\nVoo LAN LAN 3524 Localizador: AAHZSR" },
+                { id: "e55", time: "12h15", title: "Decolagem voo LAN LAN3492", loc: "Aeroporto de Teresina", uni: "Passeio", flight: "LAN3492", type: "plane", desc: "Voo THE (12h15) x FOR (13h25). Localizador: AAHZSR" },
+                { id: "e56", time: "14h30", title: "Decolagem voo LAN LAN3524", loc: "Aeroporto Fortaleza", uni: "Passeio", flight: "LAN3524", type: "plane", desc: "Voo FOR (14h30) x BEL (16h30). Localizador: AAHZSR" },
                 { id: "e57", time: "16h30", title: "Chegada ao Aeroporto de Belém", loc: "Aeroporto de Belém", uni: "Passeio", type: "clock", desc: "Fim do programa oficial de viagem." }
             ]}
         ];
@@ -349,12 +349,11 @@
             vtrs: [
                 { auth: "DN-02 / Comitiva", model: "Toyota Yaris", plate: "SZM-9A22", mot: "A definir", tel: "91900000000", stay: "Hotel Premier / Hotel Cívico" }
             ],
-            convidados: [
+            palestrantes: [
                 { n: "Dr. Péricles Aurélio Lima de Queiroz", f: "Ministro do STM e Diretor da ENAJUM", l: "Brasília-DF", p: "Seminário", img: "Pericles.png" },
                 { n: "Dr. Clauro Roberto de Bortolli", f: "Procurador-Geral de Justiça Militar", l: "Brasília-DF", p: "Seminário", img: "Clauro.png" },
                 { n: "Gen. Bda. Roberval de Almeida", f: "Comandante da 22ª Brigada de Infantaria de Selva", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
-                { n: "Prof Dr Márcia Haydée Porto de Carvalho", f: "Promotora de Justiça e Coord. PPGDIR/UFMA", l: "Maranhão", p: "Seminário", img: "Marcia.png" },
-                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Jurídico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
+                { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" }
             ],
             contatos: [
                 { superHeader: "MARANHÃO" },
@@ -447,16 +446,16 @@
             const body = document.getElementById('modal-body');
             document.getElementById('modal-title').innerText = "Localizador";
             
-            const isAzul = flightCode.startsWith('AD');
+            const isAzul = flightCode.startsWith('AZU');
             const loc = isAzul ? 'HLP5WJ' : 'AAHZSR';
-            const ciaClass = isAzul ? 'pass-azul' : 'pass-latam';
-            const bgClass = isAzul ? 'bg-azul' : 'bg-latam';
+            const ciaClass = isAzul ? 'pass-azu' : 'pass-lan';
+            const bgClass = isAzul ? 'bg-azu' : 'bg-lan';
             const ciaName = isAzul ? 'AZUL' : 'LATAM';
 
             let origin = 'BEL';
             let dest = 'SLZ';
-            if (flightCode === 'LA3492') { origin = 'THE'; dest = 'FOR'; }
-            if (flightCode === 'LA3524') { origin = 'FOR'; dest = 'BEL'; }
+            if (flightCode.includes('3492')) { origin = 'THE'; dest = 'FOR'; }
+            if (flightCode.includes('3524')) { origin = 'FOR'; dest = 'BEL'; }
 
             body.innerHTML = `
                 <div class="boarding-pass ${ciaClass}">
@@ -466,7 +465,7 @@
                             <p class="font-extrabold text-sm">SILVA / JOSÉ FÁBIO CARNEIRO DA</p>
                         </div>
                         <div class="text-right">
-                             <p class="text-[10px] font-black">${ciaName}</p>
+                             <p class="text-[10px] font-black text-white">${ciaName}</p>
                              <i class="fas fa-plane text-gold text-xl"></i>
                         </div>
                     </div>
@@ -492,7 +491,7 @@
                     </div>
                     <div class="pass-cut"></div>
                     <div class="p-6 bg-slate-50 flex flex-col items-center">
-                        <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest text-center">Simulação Digital para Fins Operativos</p>
+                        <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest text-center">Fins Operativos</p>
                     </div>
                 </div>
             `;
@@ -509,13 +508,13 @@
             body.innerHTML = `
                 <div class="space-y-6">
                     <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex justify-between">
-                        <div class="text-left"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Hora Local</p><span class="text-navy font-black text-lg"><i class="fas fa-clock text-gold mr-2"></i>${event.time}</span></div>
-                        <div class="text-right"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Uniforme</p><span class="bg-navy text-white px-4 py-1.5 rounded-xl font-bold text-[11px] uppercase">${event.uni}</span></div>
+                        <div class="text-left"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1 text-left">Hora Local</p><span class="text-navy font-black text-lg"><i class="fas fa-clock text-gold mr-2"></i>${event.time}</span></div>
+                        <div class="text-right"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1 text-right">Uniforme</p><span class="bg-navy text-white px-4 py-1.5 rounded-xl font-bold text-[11px] uppercase">${event.uni}</span></div>
                     </div>
                     <div class="text-left">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase mb-1">Atividade</p>
-                        <p class="text-2xl font-extrabold text-navy leading-tight mb-2">${event.title}</p>
-                        ${event.theme ? `<p class="text-sm text-slate-600 italic font-medium">"${event.theme}"</p>` : ''}
+                        <p class="text-[11px] font-bold text-slate-400 uppercase mb-1 text-left">Atividade</p>
+                        <p class="text-2xl font-extrabold text-navy leading-tight mb-2 text-left">${event.title}</p>
+                        ${event.theme ? `<p class="text-sm text-slate-600 italic font-medium text-left">"${event.theme}"</p>` : ''}
                     </div>
                     <div class="bg-white p-6 rounded-[32px] border-l-8 border-gold shadow-sm">
                         <p class="text-[11px] font-bold text-gold uppercase mb-4 tracking-widest text-left">Observações Transcritas</p>
@@ -532,8 +531,14 @@
             const body = document.getElementById('modal-body');
             let content = "";
             if (type === 'uniformes') {
-                document.getElementById('modal-title').innerText = "Guia de Uniformes";
-                const unis = [{ t: "OP3", d: "Uniforme Operativo Azul-Ferrete (com Boné de Viagem)." }, { t: "Passeio", d: "Calça e Camisa social, Blazer (sem gravata)." }, { t: "Esporte Amazônico", d: "Calça social, Camisa polo e Sapato." }, { t: "5.3 / 5.5", d: "Uniforme de Gala / Social da Marinha do Brasil." }];
+                document.getElementById('modal-title').innerText = "Descrição de Uniformes";
+                const unis = [
+                    { t: "Passeio", d: "Utilização durante as viagens em voos comerciais." },
+                    { t: "5.5 - Branco de Verão", d: "Utilização durante o ciclo de palestras dos dias 29 e 30ABR." },
+                    { t: "5.3 - Dolmã (com barretas)", d: "Será utilizado na cerimônia de Outorga das comendas da Ordem do Mérito do Ministério Público Militar (OMMPM)" },
+                    { t: "OP3", d: "Será utilizado durante a visita à CPPI" },
+                    { t: "Esporte Amazônico", d: "Eventos sociais." }
+                ];
                 unis.forEach(u => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="font-extrabold text-navy mb-2 text-xs uppercase tracking-widest border-b pb-2 text-left">${u.t}</p><p class="text-[15px] text-slate-600 font-medium text-left">${u.d}</p></div>`);
             } else if (type === 'convidados') {
                 document.getElementById('modal-title').innerText = "Convidados do Seminário";
