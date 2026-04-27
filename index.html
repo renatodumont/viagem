@@ -51,7 +51,7 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Marcador de tempo AGORA */
+        /* Marcador de tempo AGORA (Azul Marinho para evitar vermelho) */
         .current-time-line {
             display: flex;
             align-items: center;
@@ -84,7 +84,7 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
+            0 { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.1); opacity: 0.7; }
             100% { transform: scale(1); opacity: 1; }
         }
@@ -118,7 +118,7 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estilos Localizador */
+        /* Estilos Localizador (Removido Vermelho) */
         .boarding-pass {
             background: white;
             border-radius: 20px;
@@ -128,14 +128,14 @@
             margin: 0 auto;
         }
         .pass-azul { border-top: 8px solid #002D5E; }
-        .pass-latam { border-top: 8px solid #E31D2D; }
+        .pass-latam { border-top: 8px solid #1e293b; } /* Cinza Ardósia em vez de vermelho */
 
         .pass-header {
             padding: 20px;
             color: white;
         }
         .bg-azul { background-color: #002D5E; }
-        .bg-latam { background-color: #E31D2D; }
+        .bg-latam { background-color: #1e293b; } /* Cinza Ardósia em vez de vermelho */
 
         .pass-cut {
             border-top: 2px dashed #e2e8f0;
@@ -175,11 +175,11 @@
 </head>
 <body class="font-sans text-left">
 
-    <!-- Header -->
+    <!-- Cabeçalho -->
     <header class="glass-header text-white sticky top-0 z-50 border-b border-gold shadow-xl">
         <div class="p-4 sm:p-5">
             <div class="flex justify-between items-start gap-4">
-                <div class="flex-grow">
+                <div class="flex-grow text-left">
                     <p class="text-[9px] font-extrabold text-gold uppercase tracking-[0.25em] mb-1">Marinha do Brasil</p>
                     <h1 class="text-base sm:text-lg font-extrabold leading-tight">Comando do 4º Distrito Naval</h1>
                     <h2 class="text-[10px] sm:text-[11px] font-medium text-blue-100 opacity-90 mt-0.5 tracking-wide uppercase">Programa de Eventos externos - Viagem ao Maranhão e ao Piauí</h2>
@@ -205,7 +205,7 @@
             </div>
         </div>
 
-        <!-- Menu -->
+        <!-- Menu Principal -->
         <nav class="grid grid-cols-5 gap-1.5 px-3 pb-3">
             <button onclick="openModal('convidados')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
                 <i class="fas fa-users text-gold text-xs sm:text-sm"></i>
@@ -234,7 +234,7 @@
 
     <main class="p-4 sm:p-5 max-w-2xl mx-auto" id="events-container"></main>
 
-    <!-- Modal Base -->
+    <!-- Modal Dinâmico -->
     <div id="info-modal" class="modal fixed inset-0 z-[60] hidden text-left">
         <div class="fixed inset-0 bg-navy-dark/90 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto flex items-end justify-center">
@@ -254,7 +254,7 @@
     </div>
 
     <script>
-        // --- AUXILIARES ---
+        // --- FUNÇÕES AUXILIARES ---
         function getMapsLink(loc) {
             const l = loc.toLowerCase();
             if (l.includes("belém")) return "https://maps.app.goo.gl/3aaGjB8rjDUegxqt5";
@@ -272,7 +272,7 @@
             return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc)}`;
         }
 
-        // --- DATABASE ---
+        // --- BASE DE DADOS ---
         const schedule = [
             { label: "29 ABR", date: "2026-04-29", events: [
                 { id: "e1", time: "11h", title: "Deslocamento para o Aeroporto Internacional de Belém", loc: "Trânsito", uni: "Passeio", type: "car", desc: "XXX" },
@@ -355,7 +355,7 @@
                 { n: "Gen. Bda. Roberval de Almeida", f: "Comandante da 22ª Brigada de Infantaria de Selva", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
                 { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" },
                 { n: "Prof Dr Márcia Haydée Porto de Carvalho", f: "Promotora de Justiça e Coord. PPGDIR/UFMA", l: "Maranhão", p: "Seminário", img: "Marcia.png" },
-                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Juriddico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
+                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Jurídico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
             ],
             contatos: [
                 { superHeader: "MARANHÃO" },
@@ -369,7 +369,7 @@
             ]
         };
 
-        // --- CORE UI ---
+        // --- INTERFACE PRINCIPAL ---
         function init() {
             const tabs = document.getElementById('tab-container');
             const container = document.getElementById('events-container');
@@ -407,7 +407,7 @@
                                     <i class="fas ${iconClass} text-gold text-sm"></i>
                                     <span class="text-2xl font-black tracking-tight">${ev.time}</span>
                                 </div>
-                                <div class="flex gap-2 items-center">
+                                <div class="flex gap-2 items-center text-left">
                                     ${hasFlightCard ? `<button onclick="showBoardingPass('${ev.flight}')" class="text-blue-600 bg-blue-50 px-3 py-2 rounded-xl text-[10px] font-bold border border-blue-100 hover:bg-blue-100 transition-colors"><i class="fas fa-search mr-1"></i> LOCALIZADOR</button>` : ''}
                                     <span onclick="openModal('uniformes'); event.stopPropagation();" class="uniform-badge bg-slate-50 text-slate-500 text-[10px] font-bold px-3 py-2 rounded-xl uppercase border border-slate-200">${ev.uni}</span>
                                 </div>
@@ -541,17 +541,17 @@
                 logistics.convidados.forEach(h => content += `
                     <div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 flex gap-4 items-center text-left">
                         <div class="photo-frame">
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(h.n)}&background=0c1c38&color=FFD700" alt="${h.n}">
+                            <img src="${h.img}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(h.n)}&background=0c1c38&color=FFD700'" alt="${h.n}">
                         </div>
                         <div class="flex-grow">
-                            <p class="font-bold text-navy text-base uppercase leading-tight">${h.n}</p>
-                            <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 leading-tight">${h.f}</p>
-                            <div class="mt-2 text-[9px] font-black text-gold uppercase tracking-tighter">${h.p}</div>
+                            <p class="font-bold text-navy text-base uppercase leading-tight text-left">${h.n}</p>
+                            <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 leading-tight text-left">${h.f}</p>
+                            <div class="mt-2 text-[9px] font-black text-gold uppercase tracking-tighter text-left">${h.p}</div>
                         </div>
                     </div>`);
             } else if (type === 'motoristas') {
                 document.getElementById('modal-title').innerText = "Logística de Viaturas";
-                logistics.vtrs.forEach(v => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="text-[10px] font-extrabold text-navy/40 uppercase mb-1">Apoio à Comitiva</p><p class="text-base font-extrabold text-navy uppercase mb-4">${v.mot}</p><div class="bg-slate-50 p-4 rounded-2xl mb-4 text-left"><p class="text-[13px] text-navy font-bold flex items-center gap-3"><i class="fas fa-car-side"></i> ${v.model} | Placa: ${v.plate}</p></div><a href="tel:${v.tel.replace(/\D/g,'')}" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl shadow-sm text-center flex items-center justify-center"><i class="fas fa-phone-alt mr-2 text-gold"></i> Chamar Motorista</a></div>`);
+                logistics.vtrs.forEach(v => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="text-[10px] font-extrabold text-navy/40 uppercase mb-1 text-left">Apoio à Comitiva</p><p class="text-base font-extrabold text-navy uppercase mb-4 text-left">${v.mot}</p><div class="bg-slate-50 p-4 rounded-2xl mb-4 text-left"><p class="text-[13px] text-navy font-bold flex items-center gap-3"><i class="fas fa-car-side"></i> ${v.model} | Placa: ${v.plate}</p></div><a href="tel:${v.tel.replace(/\D/g,'')}" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl shadow-sm text-center flex items-center justify-center"><i class="fas fa-phone-alt mr-2 text-gold"></i> Chamar Motorista</a></div>`);
             } else if (type === 'telefones') {
                 document.getElementById('modal-title').innerText = "Contatos Operacionais";
                 content = `<div class="bg-white rounded-[32px] overflow-hidden">`;
