@@ -62,16 +62,16 @@
         .current-time-dot {
             width: 12px;
             height: 12px;
-            background: #ef4444;
+            background: #0c1c38;
             border-radius: 50%;
             margin-right: 10px;
-            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 0 4px rgba(12, 28, 56, 0.2);
             animation: pulse 2s infinite;
         }
         .current-time-horizontal {
             flex-grow: 1;
             height: 2px;
-            background-color: #ef4444;
+            background-color: #0c1c38;
         }
         .current-time-label {
             position: absolute;
@@ -79,7 +79,7 @@
             top: -16px;
             font-size: 10px;
             font-weight: 800;
-            color: #ef4444;
+            color: #0c1c38;
             text-transform: uppercase;
         }
 
@@ -118,7 +118,7 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estilos Cartão de Embarque */
+        /* Estilos Localizador */
         .boarding-pass {
             background: white;
             border-radius: 20px;
@@ -190,13 +190,13 @@
                     <div class="flex gap-2">
                         <div class="flex flex-col items-center group touch-target cursor-pointer">
                             <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10">
-                                <i class="fas fa-file-pdf text-[#BC544B]"></i>
+                                <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
                             <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">Programa</span>
                         </div>
                         <div class="flex flex-col items-center group touch-target cursor-pointer">
                             <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10">
-                                <i class="fas fa-book text-[#BC544B]"></i>
+                                <i class="fas fa-book text-blue-400"></i>
                             </div>
                             <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">Livreto</span>
                         </div>
@@ -341,7 +341,7 @@
                 { id: "e54", time: "10h00", title: "Chegada ao Aeroporto de Teresina - PI", loc: "Aeroporto de Teresina", uni: "Passeio", desc: "Voo LATAM LA 3492 Localizador: AAHZSR\nVoo LATAM LA 3524 Localizador: AAHZSR" },
                 { id: "e55", time: "12h15", title: "Decolagem voo LATAM 3492", loc: "Aeroporto de Teresina", uni: "Passeio", flight: "LA3492", type: "plane", desc: "Voo THE (12h15) x FOR (13h25). Localizador: AAHZSR" },
                 { id: "e56", time: "14h30", title: "Decolagem voo LATAM 3524", loc: "Aeroporto Fortaleza", uni: "Passeio", flight: "LA3524", type: "plane", desc: "Voo FOR (14h30) x BEL (16h30). Localizador: AAHZSR" },
-                { id: "e57", time: "16h30", title: "Chegada ao Aeroporto de Belém", loc: "Aeroporto de Belém", uni: "Passeio", type: "plane", desc: "Fim do programa oficial de viagem." }
+                { id: "e57", time: "16h30", title: "Chegada ao Aeroporto de Belém", loc: "Aeroporto de Belém", uni: "Passeio", type: "clock", desc: "Fim do programa oficial de viagem." }
             ]}
         ];
 
@@ -355,7 +355,7 @@
                 { n: "Gen. Bda. Roberval de Almeida", f: "Comandante da 22ª Brigada de Infantaria de Selva", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
                 { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" },
                 { n: "Prof Dr Márcia Haydée Porto de Carvalho", f: "Promotora de Justiça e Coord. PPGDIR/UFMA", l: "Maranhão", p: "Seminário", img: "Marcia.png" },
-                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Jurídico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
+                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Juriddico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
             ],
             contatos: [
                 { superHeader: "MARANHÃO" },
@@ -397,6 +397,9 @@
 
                     const mapsUrl = getMapsLink(ev.loc);
 
+                    // Só mostra o botão do localizador se tiver o código do voo definido (exceto e57)
+                    const hasFlightCard = ev.type === 'plane' && ev.flight && ev.id !== 'e57';
+
                     div.innerHTML += `
                         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 relative w-full event-card" data-time="${ev.time}">
                             <div class="flex justify-between items-start mb-4">
@@ -405,7 +408,7 @@
                                     <span class="text-2xl font-black tracking-tight">${ev.time}</span>
                                 </div>
                                 <div class="flex gap-2 items-center">
-                                    ${ev.type === 'plane' ? `<button onclick="showBoardingPass('${ev.flight}')" class="text-blue-600 bg-blue-50 px-3 py-2 rounded-xl text-[10px] font-bold border border-blue-100 hover:bg-blue-100 transition-colors"><i class="fas fa-file-pdf mr-1"></i> CARTÃO</button>` : ''}
+                                    ${hasFlightCard ? `<button onclick="showBoardingPass('${ev.flight}')" class="text-blue-600 bg-blue-50 px-3 py-2 rounded-xl text-[10px] font-bold border border-blue-100 hover:bg-blue-100 transition-colors"><i class="fas fa-search mr-1"></i> LOCALIZADOR</button>` : ''}
                                     <span onclick="openModal('uniformes'); event.stopPropagation();" class="uniform-badge bg-slate-50 text-slate-500 text-[10px] font-bold px-3 py-2 rounded-xl uppercase border border-slate-200">${ev.uni}</span>
                                 </div>
                             </div>
@@ -417,7 +420,7 @@
                                 <a href="${mapsUrl}" target="_blank" class="text-[14px] text-blue-600 font-bold inline-flex items-center gap-2.5 bg-slate-50 rounded-2xl px-4 w-fit border border-slate-100 text-left">
                                     <i class="fas fa-location-dot text-gold"></i> ${ev.loc}
                                 </a>
-                                ${ev.flight ? `<button onclick="searchFlight('${ev.flight}')" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl active:scale-95 transition-transform"><i class="fas fa-plane-departure text-gold mr-2"></i> RASTREAR VOO ${ev.flight}</button>` : ''}
+                                ${ev.flight && ev.id !== 'e57' ? `<button onclick="searchFlight('${ev.flight}')" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl active:scale-95 transition-transform"><i class="fas fa-plane-departure text-gold mr-2"></i> RASTREAR VOO ${ev.flight}</button>` : ''}
                             </div>
                             <button onclick="showEventInfo('${ev.id}')" class="absolute top-14 right-6 text-gold p-2 active:scale-90 transition-transform"><i class="fas fa-circle-info text-3xl"></i></button>
                         </div>`;
@@ -443,7 +446,7 @@
 
         window.showBoardingPass = function(flightCode) {
             const body = document.getElementById('modal-body');
-            document.getElementById('modal-title').innerText = "Simulação de Cartão de Embarque";
+            document.getElementById('modal-title').innerText = "Localizador";
             
             const isAzul = flightCode.startsWith('AD');
             const loc = isAzul ? 'HLP5WJ' : 'AAHZSR';
@@ -490,7 +493,7 @@
                     </div>
                     <div class="pass-cut"></div>
                     <div class="p-6 bg-slate-50 flex flex-col items-center">
-                        <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest text-center">Simulação Digital - VISITEC-DASM</p>
+                        <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest text-center">Simulação Digital para Fins Operativos</p>
                     </div>
                 </div>
             `;
