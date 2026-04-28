@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VISITEC | Maranhão e Piauí</title>
+    <title>Viagem ao Maranhão e Piauí</title>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,18 +206,20 @@
                 <div class="flex flex-col items-center flex-shrink-0">
                     <p class="text-[9px] font-bold text-white uppercase tracking-wider mb-1.5 opacity-90 text-center">Programas:</p>
                     <div class="flex gap-2">
-                        <div class="flex flex-col items-center group touch-target cursor-pointer">
-                            <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10">
+                        <!-- Botão São Luís -->
+                        <a href="Programa-de-Eventos-Sao-Luiz.pdf" download="Programa-de-Eventos-Sao-Luiz.pdf" class="flex flex-col items-center group touch-target cursor-pointer no-underline">
+                            <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10 active:bg-white/20 transition-colors">
                                 <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
                             <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">São Luís</span>
-                        </div>
-                        <div class="flex flex-col items-center group touch-target cursor-pointer">
-                            <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10">
+                        </a>
+                        <!-- Botão CPPI -->
+                        <a href="Programa-de-Eventos-CPPI.pdf" download="Programa-de-Eventos-CPPI.pdf" class="flex flex-col items-center group touch-target cursor-pointer no-underline">
+                            <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10 active:bg-white/20 transition-colors">
                                 <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
                             <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">CPPI</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -226,7 +228,7 @@
         <!-- Menu Principal -->
         <nav class="grid grid-cols-5 gap-1.5 px-3 pb-3">
             <button onclick="openModal('convidados')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
-                <i class="fas fa-users-viewfinder text-gold text-xs sm:text-sm"></i>
+                <i class="fas fa-user-tie text-gold text-xs sm:text-sm"></i>
                 <span class="text-[7px] sm:text-[8px] font-bold uppercase mt-1 text-center leading-tight">Palestrantes</span>
             </button>
             <button onclick="openModal('estadia')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
@@ -326,8 +328,8 @@
                 { id: "e27", time: "07h", title: "Café da manhã", loc: "Hotel Premier", uni: "Traje Civil", desc: "" },
                 { id: "e28", time: "07h45", title: "Check-out", loc: "Hotel Premier", uni: "OP3", desc: "" },
                 { id: "e29", time: "08h", title: "Deslocamento São Luiz x CPPI", loc: "Trânsito", uni: "OP3", type: "car", desc: "Tempo médio de deslocamento: 06h30\n\nApós as honras de portaló o DN-02, CP-01 e CP-02 se dirigirão para a sala do CP-01" },
-                { id: "e30", time: "14h30", title: "Chegada à CPPI (Cerimonial)", loc: "Pátio da Bandeira - CPPI", uni: "OP3", desc: "Tripulação formada no pátio da Bandeira\nPreparar som e púlpito" },
-                { id: "e31", time: "15h", title: "Visita às instalações da CPPI", loc: "CPPI", uni: "OP3", desc: "O CP-01 fará uma apresentação sobre a OM.\nTodo pessoal guarnecido em postos de mostra de material." },
+                { id: "e30", time: "14h30", title: "Chegada à CPPI (Cerimonial de recepção)", loc: "Pátio da Bandeira - CPPI", uni: "OP3", desc: "Tripulação formada no pátio da Bandeira." },
+                { id: "e31", time: "15h", title: "Visita às instalações da CPPI", loc: "CPPI", uni: "OP3", desc: "O CP-01 fará uma apresentação sobre a OM." },
                 { id: "e32", time: "17h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViaturas: Yaris" },
                 { id: "e33", time: "17h10", title: "Check-in", loc: "Hotel Cívico", uni: "OP3", desc: "" },
                 { id: "e34", time: "20h", title: "Jantar", loc: "Restaurante Praianos", uni: "Esporte Amazônico", desc: "Participantes: DN-02, CP-01, Oficiais da CPPI com familiares, por adesão.\nViaturas: Yaris" }
@@ -336,7 +338,7 @@
                 { id: "e35", time: "08h40", title: "Deslocamento para a CPPI", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
                 { id: "e36", time: "09h00", title: "Café da Manhã", loc: "CPPI", uni: "OP3", desc: "Participantes: DN-02 e CP-01 e Oficiais da CPPI e Sr Anísio Neves (Presidente da SOAMAR-PI)" },
                 { id: "e37", time: "10h30", title: "Deslocamento para Companhia Porto Piauí", loc: "Trânsito", uni: "OP3", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
-                { id: "e38", time: "11h00", title: "Visita ao Terminal Pesqueiro", loc: "Companhia Porto Piauí", uni: "OP3", desc: "Participantes: DN-02 e CP-01.\Viatura: Yaris" },
+                { id: "e38", time: "11h00", title: "Visita ao Terminal Pesqueiro", loc: "Companhia Porto Piauí", uni: "OP3", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
                 { id: "e39", time: "12h30", title: "Almoço", loc: "Restaurante Dom Ladino", uni: "OP3", desc: "" },
                 { id: "e40", time: "14h30", title: "Navegação no Rio Igaraçu", loc: "Rio Igaraçu", uni: "OP3", type: "boat", desc: "Participantes: DN-02, CP-01 e CP-02.\nECSR Luís Correia.\nDesatracação da CPPI, a fim de percorrer toda a extensão do Rio Igaraçu." },
                 { id: "e41", time: "17h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "OP3", type: "car", desc: "" },
@@ -552,7 +554,7 @@
                         <p class="text-[11px] font-bold text-slate-400 uppercase mb-1 text-left">Atividade</p>
                         <p class="text-2xl font-extrabold text-navy leading-tight mb-2 text-left">${event.title}</p>
                         ${event.theme ? `<p class="text-sm text-slate-600 italic font-medium text-left">"${event.theme}"</p>` : ''}
-                        ${event.speaker && !speakerInfo ? `<p class="font-bold text-navy uppercase text-sm mt-2">${event.speaker}</p>` : ''}
+                        ${event.speaker && !speakerInfo ? `<p class="font-bold text-navy uppercase text-sm mt-2 text-left">${event.speaker}</p>` : ''}
                     </div>
                     
                     <div class="bg-white p-6 rounded-[32px] border-l-8 border-gold shadow-sm">
@@ -599,7 +601,7 @@
                 logistics.vtrs.forEach(v => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="text-[10px] font-extrabold text-navy/40 uppercase mb-1 text-left">Apoio à Comitiva</p><p class="text-base font-extrabold text-navy uppercase mb-4 text-left">${v.mot}</p><div class="bg-slate-50 p-4 rounded-2xl mb-4 text-left"><p class="text-[13px] text-navy font-bold flex items-center gap-3"><i class="fas fa-car-side"></i> ${v.model} | Placa: ${v.plate}</p></div><a href="tel:${v.tel.replace(/\D/g,'')}" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl shadow-sm text-center flex items-center justify-center"><i class="fas fa-phone-alt mr-2 text-gold"></i> Chamar Motorista</a></div>`);
             } else if (type === 'telefones') {
                 document.getElementById('modal-title').innerText = "Contatos Operacionais";
-                content = `<div class="bg-white rounded-[32px] overflow-hidden">`;
+                content = `<div class="bg-white rounded-[32px] overflow-hidden text-left">`;
                 logistics.contatos.forEach(t => {
                     if (t.superHeader) content += `<div class="bg-navy p-4 text-gold text-center font-extrabold text-[10px] uppercase tracking-widest">${t.superHeader}</div>`;
                     else if (t.header) content += `<div class="bg-slate-50 p-2 pl-6 text-navy font-bold text-[9px] uppercase border-y text-left">${t.header}</div>`;
