@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viagem ao Maranhão e Piauí</title>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -51,7 +50,6 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Marcador de tempo AGORA (Azul Marinho) */
         .current-time-line {
             display: flex;
             align-items: center;
@@ -118,7 +116,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estilos Localizador (Sem Vermelho) */
         .boarding-pass {
             background: white;
             border-radius: 20px;
@@ -189,11 +186,28 @@
             height: 100%;
             object-fit: cover;
         }
+        
+        /* Estilo para os bullets na descrição */
+        .desc-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .desc-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .desc-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="font-sans text-left">
 
-    <!-- Cabeçalho -->
     <header class="glass-header text-white sticky top-0 z-50 border-b border-gold shadow-xl">
         <div class="p-4 sm:p-5">
             <div class="flex justify-between items-start gap-4">
@@ -206,15 +220,13 @@
                 <div class="flex flex-col items-center flex-shrink-0">
                     <p class="text-[9px] font-bold text-white uppercase tracking-wider mb-1.5 opacity-90 text-center">Programas:</p>
                     <div class="flex gap-2">
-                        <!-- Botão São Luís -->
-                        <a href="Programa-de-Eventos-Sao-Luiz.pdf" download="Programa-de-Eventos-Sao-Luiz.pdf" class="flex flex-col items-center group touch-target cursor-pointer no-underline">
+                        <a href="Programa-de-Eventos-Sao-Luiz.pdf" download class="flex flex-col items-center group touch-target cursor-pointer no-underline">
                             <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10 active:bg-white/20 transition-colors">
                                 <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
                             <span class="text-[8px] font-bold text-white uppercase mt-1 opacity-70">São Luís</span>
                         </a>
-                        <!-- Botão CPPI -->
-                        <a href="Programa-de-Eventos-CPPI.pdf" download="Programa-de-Eventos-CPPI.pdf" class="flex flex-col items-center group touch-target cursor-pointer no-underline">
+                        <a href="Programa-de-Eventos-CPPI.pdf" download class="flex flex-col items-center group touch-target cursor-pointer no-underline">
                             <div class="bg-white/10 w-11 h-11 flex items-center justify-center rounded-xl border border-white/10 active:bg-white/20 transition-colors">
                                 <i class="fas fa-file-pdf text-blue-400"></i>
                             </div>
@@ -225,7 +237,6 @@
             </div>
         </div>
 
-        <!-- Menu Principal -->
         <nav class="grid grid-cols-5 gap-1.5 px-3 pb-3">
             <button onclick="openModal('convidados')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
                 <i class="fas fa-user-tie text-gold text-xs sm:text-sm"></i>
@@ -254,7 +265,6 @@
 
     <main class="p-4 sm:p-5 max-w-2xl mx-auto" id="events-container"></main>
 
-    <!-- Modal Dinâmico -->
     <div id="info-modal" class="modal fixed inset-0 z-[60] hidden text-left">
         <div class="fixed inset-0 bg-navy-dark/90 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto flex items-end justify-center">
@@ -274,7 +284,6 @@
     </div>
 
     <script>
-        // --- FUNÇÕES AUXILIARES ---
         function getMapsLink(loc) {
             const l = loc.toLowerCase();
             if (l.includes("belém")) return "https://maps.app.goo.gl/3aaGjB8rjDUegxqt5";
@@ -289,371 +298,25 @@
             if (l.includes("pedra do sal")) return "https://www.google.com/maps/search/?api=1&query=Praia+da+Pedra+do+Sal+Parnaíba";
             if (l.includes("teresina")) return "https://www.google.com/maps/search/?api=1&query=Aeroporto+de+Teresina";
             if (l.includes("fortaleza")) return "https://www.google.com/maps/search/?api=1&query=Aeroporto+Internacional+de+Fortaleza";
-            return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc)}`;
+            return `https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(loc)}`;
         }
 
-        // --- BASE DE DADOS ---
         const schedule = [
             { label: "29 ABR", date: "2026-04-29", events: [
-                { id: "e1", time: "11h", title: "Deslocamento para o Aeroporto Internacional de Belém", loc: "Trânsito", uni: "Passeio", type: "car", desc: "XXX" },
-                { id: "e2", time: "13h20", title: "Decolagem voo Azul AZU2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AZU 2620 BEL (13h20) x SLZ (14h25). Localizador: HLP5WJ" },
+                { id: "e1", time: "11h", title: "Deslocamento para o Aeroporto Internacional de Belém", loc: "Trânsito", uni: "Passeio", type: "car", desc: "Apresentação no aeroporto para check-in." },
+                { id: "e2", time: "13h20", title: "Decolagem voo Azul AZU2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AZU 2620 BEL (13h20) x SLZ (14h25).\nLocalizador: HLP5WJ" },
                 { id: "e3", time: "14h25", title: "Chegada ao Aeroporto de São Luiz - MA", loc: "Aeroporto de São Luiz - MA", uni: "Passeio", desc: "" },
                 { id: "e4", time: "14h35", title: "Almoço", loc: "Restaurante", uni: "Passeio", desc: "" },
                 { id: "e5", time: "15h30", title: "Deslocamento para Hotel Premier", loc: "Trânsito", uni: "Passeio", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
                 { id: "e6", time: "15h40", title: "Check-In", loc: "Hotel Premier", uni: "Passeio", desc: "" },
                 { id: "e7", time: "17h50", title: "Deslocamento para o Prédio Histórico da UFMA", loc: "Trânsito", uni: "5.5", type: "car", desc: "Tempo médio de deslocamento: 20 minutos" },
                 { id: "e8", time: "18h30", title: "Inscrições e recepção", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "" },
-                { id: "e9", time: "19h", title: "Abertura do Seminário", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "Composição de mesa" },
+                { id: "e9", time: "19h", title: "Abertura do Seminário", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "Composição de mesa oficial." },
                 { id: "e10", time: "19h20", title: "Palestra Inaugural", loc: "Prédio Histórico da UFMA", uni: "5.5", speaker: "Dr. CLAURO ROBERTO DE BORTOLLI", theme: "Ministério Público Militar: atuação contemporânea", desc: "Moderadora: Prof. Dr. MÁRCIA HAYDÊE PORTO DE CARVALHO (Coordenadora do PPGDir/UFMA)" },
                 { id: "e11", time: "20h30", title: "Encerramento", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "" },
                 { id: "e12", time: "20h30", title: "Coquetel", loc: "Foyer do Prédio Histórico da UFMA", uni: "5.5", desc: "" },
                 { id: "e13", time: "22h10", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "5.5", type: "car", desc: "Tempo de deslocamento: 15 minutos" }
             ]},
             { label: "30 ABR", date: "2026-04-30", events: [
-                { id: "e14", time: "07h", title: "Café da manhã", loc: "Hotel Premier", uni: "5.5", desc: "XXX" },
-                { id: "e15", time: "08h", title: "Deslocamento para a UFMA", loc: "Trânsito", uni: "5.5", type: "car", desc: "Tempo médio de deslocamento: 20 minutos" },
-                { id: "e16", time: "08h20", title: "Recepção e registro de presença", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "" },
-                { id: "e17", time: "08h45", title: "1ª Palestra", loc: "Prédio Histórico da UFMA", uni: "5.5", speaker: "General de Brigada ROBERVAL DE ALMEIRA", theme: "A atuação do Exército Brasileiro na Amazônia Oriental", desc: "Moderador: Dr. Vinícius Yscandar de Carvalho (Promotor de Justiça Militar)\n(Comandante da 22ª Brigada de Infantaria de Selva)" },
-                { id: "e18", time: "09h40", title: "2ª Palestra", loc: "Prédio Histórico da UFMA", uni: "5.5", speaker: "Contra-Almirante JOSÉ FABIO CARNEIRO DA SILVA", theme: "A importância do Mar e da Marinha na Amazônia Oriental", desc: "Dr. DIOGO GUALHARDO NEVES (Assessor Jurídico-Chefe da Procuradoria de Justiça Militar em São Luís/MA)" },
-                { id: "e19", time: "10h30", title: "Intervalo", loc: "UFMA", uni: "5.5", desc: "" },
-                { id: "e20", time: "11h", title: "Palestra de Encerramento", loc: "Prédio Histórico da UFMA", uni: "5.5", speaker: "Dr. PÉRICLES AURÉLIO LIMA DE QUEIROZ", theme: "Justiça Militar da União: Trajetória, Efetividade e o Fortalecimento Democrático", desc: "Dr. PAULO ROBERTO BARBOSA RAMOS (Promotor de Justiça do Ministério Público do Estado do Maranhão e Professor do PPGDir/UFMA)" },
-                { id: "e21", time: "12h", title: "Encerramento", loc: "UFMA", uni: "5.5", desc: "" },
-                { id: "e22", time: "12h15", title: "Almoço", loc: "Restaurante", uni: "5.5", desc: "Almoço por adesão, à convite do CPMA-01." },
-                { id: "e23", time: "13h15", title: "Deslcamento para o Hotel", loc: "Trânsito", uni: "5.5", desc: "Troca de uniforme e realização de higiene pessoal" },
-                { id: "e24", time: "15h30", title: "Deslcamento para o Fundação Memória Republicana", loc: "Trânsito", uni: "5.3", desc: "Tempo médio de deslocamento: 22 minutos" },
-                { id: "e25", time: "16h", title: "Cerimônia comemorativa PJM/São Luís", loc: "Fundação Memória Republicana", uni: "5.3", desc: "Entrega do Medalhão do Centenário do Ministério Público Militar ao Presidente José Sarney" },
-                { id: "e26", time: "17h30", title: "Recepção institucional (coquetel)", loc: "Fundação Memória Republicana", uni: "5.3", desc: "" },
-                { id: "e27", time: "18h30", title: "Encerramento", loc: "Fundação Memória Republicana", uni: "5.3", desc: "" },
-                { id: "e28", time: "19h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "5.3", type: "car", desc: "" }
-            ]},
-            { label: "01 MAI", date: "2026-05-01", events: [
-                { id: "e27", time: "07h", title: "Café da manhã", loc: "Hotel Premier", uni: "Traje Civil", desc: "" },
-                { id: "e28", time: "07h45", title: "Check-out", loc: "Hotel Premier", uni: "OP3", desc: "" },
-                { id: "e29", time: "08h", title: "Deslocamento São Luiz x CPPI", loc: "Trânsito", uni: "OP3", type: "car", desc: "Tempo médio de deslocamento: 06h30\n },
-                { id: "e30", time: "14h30", title: "Chegada à CPPI (Cerimonial de recepção)", loc: "Pátio da Bandeira - CPPI", uni: "OP3", desc: "\nApós as honras de portaló o DN-02, CP-01 e CP-02 se dirigirão para a sala do CP-01. \n Tripulação formada no pátio da Bandeira." },
-                { id: "e31", time: "15h", title: "Visita às instalações da CPPI", loc: "CPPI", uni: "OP3", desc: "O CP-01 fará uma apresentação sobre a OM." },
-                { id: "e32", time: "17h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViaturas: Yaris" },
-                { id: "e33", time: "17h10", title: "Check-in", loc: "Hotel Cívico", uni: "OP3", desc: "" },
-                { id: "e34", time: "20h", title: "Jantar", loc: "Restaurante Praianos", uni: "Esporte Amazônico", desc: "Participantes: DN-02, CP-01, Oficiais da CPPI com familiares, por adesão.\nViaturas: Yaris" }
-            ]},
-            { label: "02 MAI", date: "2026-05-02", events: [
-                { id: "e35", time: "08h40", title: "Deslocamento para a CPPI", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
-                { id: "e36", time: "09h00", title: "Café da Manhã", loc: "CPPI", uni: "OP3", desc: "Participantes: DN-02 e CP-01 e Oficiais da CPPI e Sr Anísio Neves (Presidente da SOAMAR-PI)" },
-                { id: "e37", time: "10h30", title: "Deslocamento para Companhia Porto Piauí", loc: "Trânsito", uni: "OP3", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
-                { id: "e38", time: "11h00", title: "Visita ao Terminal Pesqueiro", loc: "Companhia Porto Piauí", uni: "OP3", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
-                { id: "e39", time: "12h30", title: "Almoço", loc: "Restaurante Dom Ladino", uni: "OP3", desc: "" },
-                { id: "e40", time: "14h30", title: "Navegação no Rio Igaraçu", loc: "Rio Igaraçu", uni: "OP3", type: "boat", desc: "Participantes: DN-02, CP-01 e CP-02.\nECSR Luís Correia.\nDesatracação da CPPI, a fim de percorrer toda a extensão do Rio Igaraçu." },
-                { id: "e41", time: "17h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "OP3", type: "car", desc: "" },
-                { id: "e42", time: "20h00", title: "Jantar", loc: "Porto das Barcas", uni: "Esporte Amazônico", desc: "Participantes: DN-02, CP-01 e esposa.\nViatura: Yaris" }
-            ]},
-            { label: "03 MAI", date: "2026-05-03", events: [
-                { id: "e43", time: "09h00", title: "Deslocamento Farol da Pedra do Sal", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
-                { id: "e44", time: "09h30", title: "Visita ao Farol da Pedra do Sal", loc: "Pedra do Sal", uni: "OP3", desc: "" },
-                { id: "e45", time: "10h00", title: "Deslocamento para o Farol de Itaqui", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
-                { id: "e46", time: "11h00", title: "Visita ao Farol de Itaqui", loc: "Luís Correia", uni: "OP3", desc: "" },
-                { id: "e47", time: "12h", title: "Almoço", loc: "Restaurante Don Ladino", uni: "OP3", desc: "Participantes: DN-02 e CP-01." },
-                { id: "e48", time: "15h00", title: "Deslocamento para o Porto dos Tatus", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CPPI-01" },
-                { id: "e49", time: "15h30", title: "Navegação no Delta do Parnaíba", loc: "Delta do Parnaíba", uni: "OP3", type: "boat", desc: "Participantes: DN-02, CP-01 e CP-02.\nDesatracação e Atracação no Porto dos Tatus.\nECSR Luís Correia" },
-                { id: "e50", time: "17h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "OP3", type: "car", desc: "" },
-                { id: "e51", time: "19h", title: "Jantar", loc: "Pizzaria Paulistana", uni: "Esporte Amazônico", desc: "Participantes:: DN-02, CP-01 e CP-02.\nViatura: Yaris" }
-            ]},
-            { label: "04 MAI", date: "2026-05-04", events: [
-                { id: "e52", time: "04h30", title: "Check-out", loc: "Hotel Cívico", uni: "Passeio", desc: "Participantes: DN-02, CP-01\nViatura: Yaris" },
-                { id: "e53", time: "05h00", title: "Deslocamento para Aeroporto", loc: "Trânsito para Teresina", uni: "Passeio", type: "car", desc: "Tempo Médio de deslocamento: 5h" },
-                { id: "e54", time: "10h00", title: "Chegada ao Aeroporto de Teresina - PI", loc: "Aeroporto de Teresina", uni: "Passeio", desc: "Voo LAN LAN 3492 Localizador: AAHZSR\nVoo LAN LAN 3524 Localizador: AAHZSR" },
-                { id: "e55", time: "12h15", title: "Decolagem voo LAN LAN3492", loc: "Aeroporto de Teresina", uni: "Passeio", flight: "LAN3492", type: "plane", desc: "Voo THE (12h15) x FOR (13h25). Localizador: AAHZSR" },
-                { id: "e56", time: "14h30", title: "Decolagem voo LAN LAN3524", loc: "Aeroporto Fortaleza", uni: "Passeio", flight: "LAN3524", type: "plane", desc: "Voo FOR (14h30) x BEL (16h30). Localizador: AAHZSR" },
-                { id: "e57", time: "16h30", title: "Chegada ao Aeroporto de Belém", loc: "Aeroporto de Belém", uni: "Passeio", type: "clock", desc: "Fim do programa oficial de viagem." }
-            ]}
-        ];
-
-        const logistics = {
-            vtrs: [
-                { auth: "DN-02 / Comitiva", model: "Toyota Yaris", plate: "SZM-9A22", mot: "A definir", tel: "91900000000", stay: "Hotel Premier / Hotel Cívico" }
-            ],
-            convidados: [
-                { n: "Dr. Péricles Aurélio Lima de Queiroz", f: "Ministro do STM e Diretor da ENAJUM", l: "Brasília-DF", p: "Seminário", img: "Pericles.png" },
-                { n: "Dr. Clauro Roberto de Bortolli", f: "Procurador-Geral de Justiça Militar", l: "Brasília-DF", p: "Seminário", img: "Clauro.png" },
-                { n: "Gen. Bda. Roberval de Almeida", f: "Comandante da 22ª Brigada de Infantaria de Selva", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
-                { n: "Prof Dr Márcia Haydée Porto de Carvalho", f: "Promotora de Justiça e Coord. PPGDIR/UFMA", l: "Maranhão", p: "Seminário", img: "Marcia.png" },
-                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Jurídico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
-            ],
-            contatos: [
-                { superHeader: "MARANHÃO" },
-                { name: "PJM - São Luís/MA", role: "Sede Administrativa", phone: "9832210000" },
-                { name: "CMG Simões (CPMA)", role: "Comandante", phone: "98991446833" },
-                { name: "Hotel Premier", role: "Recepção", phone: "9832140000" },
-                { header: "PIAUÍ" },
-                { name: "CF RICARDO FERREIRA (CPPI)", role: "Capitão dos Portos", phone: "86981403299" },
-                { name: "CPPI", role: "Capitania dos Portos", phone: "8633210000" },
-                { name: "Hotel Cívico", role: "Recepção Parnaíba", phone: "8633230000" }
-            ]
-        };
-
-        // --- INTERFACE PRINCIPAL ---
-        function init() {
-            const tabs = document.getElementById('tab-container');
-            const container = document.getElementById('events-container');
-            const now = new Date();
-            const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-            let initialIdx = schedule.findIndex(s => s.date === todayStr);
-            if (initialIdx === -1) initialIdx = 0;
-
-            schedule.forEach((day, idx) => {
-                const btn = document.createElement('button');
-                btn.className = `touch-target flex-1 px-4 rounded-2xl text-[10px] font-bold uppercase transition-all whitespace-nowrap ${idx === initialIdx ? 'bg-gold text-navy shadow-lg' : 'bg-navy-dark text-white/50'}`;
-                btn.innerText = day.label;
-                btn.onclick = () => switchTab(idx);
-                tabs.appendChild(btn);
-
-                const div = document.createElement('div');
-                div.id = `day-${idx}`;
-                div.className = `tab-content ${idx === initialIdx ? 'active' : ''}`;
-                
-                day.events.forEach(ev => {
-                    let iconClass = "fa-clock";
-                    if (ev.type === 'plane') iconClass = "fa-plane";
-                    else if (ev.type === 'car') iconClass = "fa-car";
-                    else if (ev.type === 'boat') iconClass = "fa-ship";
-
-                    const mapsUrl = getMapsLink(ev.loc);
-
-                    // Só mostra o botão do localizador se tiver o código do voo definido (exceto e57)
-                    const hasFlightCard = ev.type === 'plane' && ev.flight && ev.id !== 'e57';
-
-                    div.innerHTML += `
-                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 relative w-full event-card" data-time="${ev.time}">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex items-center gap-2 text-navy">
-                                    <i class="fas ${iconClass} text-gold text-sm"></i>
-                                    <span class="text-2xl font-black tracking-tight">${ev.time}</span>
-                                </div>
-                                <div class="flex gap-2 items-center text-left">
-                                    ${hasFlightCard ? `<button onclick="showBoardingPass('${ev.flight}')" class="text-blue-600 bg-blue-50 px-3 py-2 rounded-xl text-[10px] font-bold border border-blue-100 hover:bg-blue-100 transition-colors"><i class="fas fa-search mr-1"></i> LOCALIZADOR</button>` : ''}
-                                    <span onclick="openModal('uniformes'); event.stopPropagation();" class="uniform-badge bg-slate-50 text-slate-500 text-[10px] font-bold px-3 py-2 rounded-xl uppercase border border-slate-200">${ev.uni}</span>
-                                </div>
-                            </div>
-                            <h4 class="font-extrabold text-slate-800 text-[18px] leading-tight mb-1 pr-12 text-left">${ev.title}</h4>
-                            ${ev.theme ? `<p class="text-xs text-slate-500 font-medium italic mb-1 text-left">"${ev.theme}"</p>` : ''}
-                            ${ev.speaker ? `<p class="text-[11px] text-slate-400 font-bold uppercase mb-4 text-left">${ev.speaker}</p>` : '<div class="mb-5"></div>'}
-                            
-                            <div class="flex flex-col gap-3">
-                                <a href="${mapsUrl}" target="_blank" class="text-[14px] text-blue-600 font-bold inline-flex items-center gap-2.5 bg-slate-50 rounded-2xl px-4 w-fit border border-slate-100 text-left">
-                                    <i class="fas fa-location-dot text-gold"></i> ${ev.loc}
-                                </a>
-                                ${ev.flight && ev.id !== 'e57' ? `<button onclick="searchFlight('${ev.flight}')" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl active:scale-95 transition-transform"><i class="fas fa-plane-departure text-gold mr-2"></i> RASTREAR VOO ${ev.flight}</button>` : ''}
-                            </div>
-                            <button onclick="showEventInfo('${ev.id}')" class="absolute top-14 right-6 text-gold p-2 active:scale-90 transition-transform"><i class="fas fa-circle-info text-3xl"></i></button>
-                        </div>`;
-                });
-                container.appendChild(div);
-            });
-            updateIndicator();
-            setInterval(updateIndicator, 60000);
-        }
-
-        function switchTab(idx) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(`day-${idx}`).classList.add('active');
-            const btns = document.getElementById('tab-container').children;
-            for(let i=0; i<btns.length; i++) btns[i].className = `touch-target flex-1 px-4 rounded-2xl text-[10px] font-bold uppercase transition-all whitespace-nowrap ${i === idx ? 'bg-gold text-navy shadow-lg' : 'bg-navy-dark text-white/50'}`;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            updateIndicator();
-        }
-
-        function searchFlight(code) {
-            window.open(`https://pt.flightaware.com/live/flight/${code.toUpperCase()}`, '_blank');
-        }
-
-        window.showBoardingPass = function(flightCode) {
-            const body = document.getElementById('modal-body');
-            document.getElementById('modal-title').innerText = "Localizador";
-            
-            const isAzul = flightCode.startsWith('AZU');
-            const loc = isAzul ? 'HLP5WJ' : 'AAHZSR';
-            const ciaClass = isAzul ? 'pass-azu' : 'pass-lan';
-            const bgClass = isAzul ? 'bg-azu' : 'bg-lan';
-            const ciaName = isAzul ? 'AZUL' : 'LATAM';
-
-            let origin = 'BEL';
-            let dest = 'SLZ';
-            if (flightCode.includes('3492')) { origin = 'THE'; dest = 'FOR'; }
-            if (flightCode.includes('3524')) { origin = 'FOR'; dest = 'BEL'; }
-
-            body.innerHTML = `
-                <div class="boarding-pass ${ciaClass}">
-                    <div class="pass-header ${bgClass} flex justify-between items-center text-left">
-                        <div>
-                            <p class="text-[9px] uppercase opacity-70 font-bold">Passageiro</p>
-                            <p class="font-extrabold text-sm">SILVA / JOSÉ FÁBIO CARNEIRO DA</p>
-                        </div>
-                        <div class="text-right">
-                             <p class="text-[10px] font-black text-white">${ciaName}</p>
-                             <i class="fas fa-plane text-gold text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-6">
-                            <div class="text-center">
-                                <p class="text-3xl font-black text-navy">${origin}</p>
-                                <p class="text-[9px] text-slate-400 font-bold uppercase">Origem</p>
-                            </div>
-                            <div class="flex-grow border-b-2 border-slate-100 mx-4 relative">
-                                <i class="fas fa-plane absolute top-[-10px] left-1/2 -translate-x-1/2 text-slate-200"></i>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-3xl font-black text-navy">${dest}</p>
-                                <p class="text-[9px] text-slate-400 font-bold uppercase">Destino</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4 border-t border-slate-50 pt-4 text-left">
-                            <div><p class="text-[9px] text-slate-400 font-bold uppercase">Voo</p><p class="font-black text-navy">${flightCode}</p></div>
-                            <div><p class="text-[9px] text-slate-400 font-bold uppercase">Localizador</p><p class="font-black text-navy">${loc}</p></div>
-                            <div><p class="text-[9px] text-slate-400 font-bold uppercase">Assento</p><p class="font-black text-navy">Prefer.</p></div>
-                        </div>
-                    </div>
-                    <div class="pass-cut"></div>
-                    <div class="p-6 bg-slate-50 flex flex-col items-center">
-                        <p class="text-[8px] font-bold text-slate-400 uppercase tracking-widest text-center">Fins Operativos</p>
-                    </div>
-                </div>
-            `;
-            openModalWindow();
-        };
-
-        window.showEventInfo = function(eventId) {
-            let event = null;
-            schedule.forEach(day => { const found = day.events.find(e => e.id === eventId); if(found) event = found; });
-            if(!event) return;
-            const body = document.getElementById('modal-body');
-            document.getElementById('modal-title').innerText = "Minuta Detalhada";
-            
-            // Busca palestrante na lista de convidados para exibir foto e cargo
-            let speakerInfo = null;
-            if (event.speaker) {
-                speakerInfo = logistics.convidados.find(c => c.n.toUpperCase().includes(event.speaker.split(' ').pop().toUpperCase()) || event.speaker.includes(c.n));
-            }
-
-            body.innerHTML = `
-                <div class="space-y-6">
-                    <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex justify-between">
-                        <div class="text-left"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1 text-left">Hora Local</p><span class="text-navy font-black text-lg"><i class="fas fa-clock text-gold mr-2"></i>${event.time}</span></div>
-                        <div class="text-right"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1 text-right">Uniforme</p><span class="bg-navy text-white px-4 py-1.5 rounded-xl font-bold text-[11px] uppercase">${event.uni}</span></div>
-                    </div>
-
-                    ${speakerInfo ? `
-                    <div class="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm text-center">
-                        <div class="photo-frame-lg">
-                            <img src="${speakerInfo.img}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(speakerInfo.n)}&background=0c1c38&color=FFD700'" alt="${speakerInfo.n}">
-                        </div>
-                        <p class="text-[11px] font-bold text-gold uppercase tracking-widest mb-1">Palestrante</p>
-                        <h5 class="text-lg font-black text-navy uppercase leading-tight">${speakerInfo.n}</h5>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 leading-tight">${speakerInfo.f}</p>
-                    </div>
-                    ` : ''}
-
-                    <div class="text-left">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase mb-1 text-left">Atividade</p>
-                        <p class="text-2xl font-extrabold text-navy leading-tight mb-2 text-left">${event.title}</p>
-                        ${event.theme ? `<p class="text-sm text-slate-600 italic font-medium text-left">"${event.theme}"</p>` : ''}
-                        ${event.speaker && !speakerInfo ? `<p class="font-bold text-navy uppercase text-sm mt-2 text-left">${event.speaker}</p>` : ''}
-                    </div>
-                    
-                    <div class="bg-white p-6 rounded-[32px] border-l-8 border-gold shadow-sm">
-                        <p class="text-[11px] font-bold text-gold uppercase mb-4 tracking-widest text-left">Observações Transcritas</p>
-                        <div class="text-[15px] leading-relaxed font-medium text-slate-700 text-left whitespace-pre-wrap">
-                            ${event.desc || 'Nenhuma observação constante no cronograma oficial.'}
-                        </div>
-                    </div>
-                </div>`;
-            openModalWindow();
-        };
-
-        function openModal(type) {
-            const body = document.getElementById('modal-body');
-            let content = "";
-            if (type === 'uniformes') {
-                document.getElementById('modal-title').innerText = "Descrição de Uniformes";
-                const unis = [
-                    { t: "Passeio", d: "Utilização durante as viagens em voos comerciais." },
-                    { t: "5.5 - Branco de Verão", d: "Utilização durante o ciclo de palestras dos dias 29 e 30ABR." },
-                    { t: "5.3 - Dolmã (com barretas)", d: "Será utilizado na cerimônia de Outorga das comendas da Ordem do Mérito do Ministério Público Militar (OMMPM)" },
-                    { t: "OP3", d: "Será utilizado durante a visita à CPPI" },
-                    { t: "Esporte Amazônico", d: "Eventos sociais." }
-                ];
-                unis.forEach(u => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="font-extrabold text-navy mb-2 text-xs uppercase tracking-widest border-b pb-2 text-left">${u.t}</p><p class="text-[15px] text-slate-600 font-medium text-left">${u.d}</p></div>`);
-            } else if (type === 'convidados') {
-                document.getElementById('modal-title').innerText = "Palestrantes e Convidados";
-                logistics.convidados.forEach(h => content += `
-                    <div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 flex gap-4 items-center text-left">
-                        <div class="photo-frame">
-                            <img src="${h.img}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(h.n)}&background=0c1c38&color=FFD700'" alt="${h.n}">
-                        </div>
-                        <div class="flex-grow">
-                            <p class="font-bold text-navy text-base uppercase leading-tight text-left">${h.n}</p>
-                            <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 leading-tight text-left">${h.f}</p>
-                            <div class="flex items-center gap-3 mt-2">
-                                <span class="text-[8px] font-black bg-gold/10 text-navy px-2 py-0.5 rounded-md uppercase tracking-tighter">${h.p}</span>
-                                <span class="text-[9px] font-bold text-slate-400 italic"><i class="fas fa-location-dot mr-1"></i>${h.l}</span>
-                            </div>
-                        </div>
-                    </div>`);
-            } else if (type === 'motoristas') {
-                document.getElementById('modal-title').innerText = "Logística de Viaturas";
-                logistics.vtrs.forEach(v => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="text-[10px] font-extrabold text-navy/40 uppercase mb-1 text-left">Apoio à Comitiva</p><p class="text-base font-extrabold text-navy uppercase mb-4 text-left">${v.mot}</p><div class="bg-slate-50 p-4 rounded-2xl mb-4 text-left"><p class="text-[13px] text-navy font-bold flex items-center gap-3"><i class="fas fa-car-side"></i> ${v.model} | Placa: ${v.plate}</p></div><a href="tel:${v.tel.replace(/\D/g,'')}" class="touch-target w-full bg-navy text-white text-xs font-bold rounded-2xl shadow-sm text-center flex items-center justify-center"><i class="fas fa-phone-alt mr-2 text-gold"></i> Chamar Motorista</a></div>`);
-            } else if (type === 'telefones') {
-                document.getElementById('modal-title').innerText = "Contatos Operacionais";
-                content = `<div class="bg-white rounded-[32px] overflow-hidden text-left">`;
-                logistics.contatos.forEach(t => {
-                    if (t.superHeader) content += `<div class="bg-navy p-4 text-gold text-center font-extrabold text-[10px] uppercase tracking-widest">${t.superHeader}</div>`;
-                    else if (t.header) content += `<div class="bg-slate-50 p-2 pl-6 text-navy font-bold text-[9px] uppercase border-y text-left">${t.header}</div>`;
-                    else content += `<div class="p-5 border-b border-slate-50 flex justify-between items-center bg-white"><div class="flex-grow pr-4 text-left"><p class="font-bold text-base text-slate-800 uppercase leading-tight text-left">${t.name}</p><p class="text-[11px] text-slate-400 font-bold uppercase mt-1 text-left">${t.role}</p></div><a href="tel:${t.phone.replace(/\D/g,'')}" class="touch-target bg-slate-100 text-navy p-4 rounded-full w-12 h-12 flex items-center justify-center"><i class="fas fa-phone-alt"></i></a></div>`;
-                });
-                content += "</div>";
-            } else if (type === 'estadia') {
-                document.getElementById('modal-title').innerText = "Locais de Hospedagem";
-                const locais = [{n: "Hotel Premier (São Luís)", d: "Av. dos Holandeses, Ponta d'Areia. São Luís - MA."}, {n: "Hotel Cívico (Parnaíba)", d: "Av. Pres. Vargas, 303 - Centro, Parnaíba - PI."}];
-                locais.forEach(l => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="font-bold text-navy uppercase text-sm mb-2 text-left">${l.n}</p><p class="text-[13px] text-slate-600 font-medium text-left">${l.d}</p></div>`);
-            }
-            body.innerHTML = content;
-            openModalWindow();
-        }
-
-        function openModalWindow() { const m = document.getElementById('info-modal'); m.classList.remove('hidden'); setTimeout(() => m.classList.add('open'), 10); }
-        function closeModal() { const m = document.getElementById('info-modal'); m.classList.remove('open'); setTimeout(() => m.classList.add('hidden'), 300); }
-
-        function updateIndicator() {
-            document.querySelectorAll('.current-time-line').forEach(l => l.remove());
-            const activeTab = document.querySelector('.tab-content.active');
-            if(!activeTab) return;
-            const activeIdx = activeTab.id.split('-')[1];
-            const today = new Date();
-            const tabDate = schedule[activeIdx].date;
-            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-            if (tabDate !== todayStr) return;
-
-            const timeNowMinutes = today.getHours() * 60 + today.getMinutes();
-            const timeLabel = `${String(today.getHours()).padStart(2, '0')}:${String(today.getMinutes()).padStart(2, '0')}`;
-            const cards = activeTab.querySelectorAll('.event-card');
-            let inserted = false;
-            const timelineHTML = `<div class="current-time-line"><span class="current-time-label">AGORA (${timeLabel})</span><div class="current-time-dot"></div><div class="current-time-horizontal"></div></div>`;
-
-            for (let i = 0; i < cards.length; i++) {
-                const cardTime = cards[i].getAttribute('data-time');
-                if (cardTime === "ASD") continue;
-                const match = cardTime.match(/(\d+)h(\d*)/);
-                if (!match) continue;
-                const cardMinutes = parseInt(match[1]) * 60 + parseInt(match[2] || 0);
-                if (cardMinutes > timeNowMinutes) {
-                    cards[i].insertAdjacentHTML('beforebegin', timelineHTML);
-                    inserted = true;
-                    break;
-                }
-            }
-            if (!inserted && cards.length > 0) cards[cards.length - 1].insertAdjacentHTML('afterend', timelineHTML);
-        }
-        
-        window.onload = init;
-    </script>
-</body>
-</html>
+                { id: "e14", time: "07h", title: "Café da manhã", loc: "Hotel Premier", uni: "5.5", desc: "Início das atividades do segundo dia." },
+                { id: "e15", time: "08h", title: "Deslocamento para a UFMA
