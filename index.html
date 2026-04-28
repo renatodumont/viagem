@@ -171,6 +171,24 @@
             height: 100%;
             object-fit: cover;
         }
+
+        .photo-frame-lg {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            border: 3px solid #FFD700;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .photo-frame-lg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="font-sans text-left">
@@ -207,8 +225,8 @@
 
         <!-- Menu Principal -->
         <nav class="grid grid-cols-5 gap-1.5 px-3 pb-3">
-            <button onclick="openModal('palestrantes')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
-                <i class="fas fa-users text-gold text-xs sm:text-sm"></i>
+            <button onclick="openModal('convidados')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
+                <i class="fas fa-users-viewfinder text-gold text-xs sm:text-sm"></i>
                 <span class="text-[7px] sm:text-[8px] font-bold uppercase mt-1 text-center leading-tight">Palestrantes</span>
             </button>
             <button onclick="openModal('estadia')" class="touch-target bg-white/5 active:bg-navy-dark rounded-xl border border-white/10 flex flex-col p-1">
@@ -279,8 +297,8 @@
                 { id: "e2", time: "13h20", title: "Decolagem voo Azul AZU2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AZU 2620 BEL (13h20) x SLZ (14h25). Localizador: HLP5WJ" },
                 { id: "e3", time: "14h25", title: "Chegada ao Aeroporto de São Luiz - MA", loc: "Aeroporto de São Luiz - MA", uni: "Passeio", desc: "" },
                 { id: "e4", time: "14h35", title: "Almoço", loc: "Restaurante", uni: "Passeio", desc: "" },
-                { id: "e5", time: "14h35", title: "Deslocamento para Hotel Premier", loc: "Trânsito", uni: "Passeio", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
-                { id: "e6", time: "15h", title: "Check-In", loc: "Hotel Premier", uni: "Passeio", desc: "" },
+                { id: "e5", time: "15h", title: "Deslocamento para Hotel Premier", loc: "Trânsito", uni: "Passeio", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
+                { id: "e6", time: "15h15", title: "Check-In", loc: "Hotel Premier", uni: "Passeio", desc: "" },
                 { id: "e7", time: "17h50", title: "Deslocamento para o Prédio Histórico da UFMA", loc: "Trânsito", uni: "5.5", type: "car", desc: "Tempo médio de deslocamento: 20 minutos" },
                 { id: "e8", time: "18h30", title: "Inscrições e recepção", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "" },
                 { id: "e9", time: "19h", title: "Abertura do Seminário", loc: "Prédio Histórico da UFMA", uni: "5.5", desc: "Composição de mesa" },
@@ -318,7 +336,7 @@
                 { id: "e35", time: "08h40", title: "Deslocamento para a CPPI", loc: "Trânsito", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
                 { id: "e36", time: "09h00", title: "Café da Manhã", loc: "CPPI", uni: "OP3", desc: "Participantes: DN-02 e CP-01 e Oficiais da CPPI e Sr Anísio Neves (Presidente da SOAMAR-PI)" },
                 { id: "e37", time: "10h30", title: "Deslocamento para Companhia Porto Piauí", loc: "Trânsito", uni: "OP3", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
-                { id: "e38", time: "11h00", title: "Visita ao Terminal Pesqueiro", loc: "Companhia Porto Piauí", uni: "OP3", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
+                { id: "e38", time: "11h00", title: "Visita ao Terminal Pesqueiro", loc: "Companhia Porto Piauí", uni: "OP3", desc: "Participantes: DN-02 e CP-01.\Viatura: Yaris" },
                 { id: "e39", time: "12h30", title: "Almoço", loc: "Restaurante Dom Ladino", uni: "OP3", desc: "" },
                 { id: "e40", time: "14h30", title: "Navegação no Rio Igaraçu", loc: "Rio Igaraçu", uni: "OP3", type: "boat", desc: "Participantes: DN-02, CP-01 e CP-02.\nECSR Luís Correia.\nDesatracação da CPPI, a fim de percorrer toda a extensão do Rio Igaraçu." },
                 { id: "e41", time: "17h", title: "Deslocamento para o Hotel", loc: "Trânsito", uni: "OP3", type: "car", desc: "" },
@@ -349,11 +367,13 @@
             vtrs: [
                 { auth: "DN-02 / Comitiva", model: "Toyota Yaris", plate: "SZM-9A22", mot: "A definir", tel: "91900000000", stay: "Hotel Premier / Hotel Cívico" }
             ],
-            palestrantes: [
+            convidados: [
                 { n: "Dr. Péricles Aurélio Lima de Queiroz", f: "Ministro do STM e Diretor da ENAJUM", l: "Brasília-DF", p: "Seminário", img: "Pericles.png" },
                 { n: "Dr. Clauro Roberto de Bortolli", f: "Procurador-Geral de Justiça Militar", l: "Brasília-DF", p: "Seminário", img: "Clauro.png" },
                 { n: "Gen. Bda. Roberval de Almeida", f: "Comandante da 22ª Brigada de Infantaria de Selva", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
-                { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" }
+                { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" },
+                { n: "Prof Dr Márcia Haydée Porto de Carvalho", f: "Promotora de Justiça e Coord. PPGDIR/UFMA", l: "Maranhão", p: "Seminário", img: "Marcia.png" },
+                { n: "Dr. Diogo Gualhardo Neves", f: "Assessor Jurídico-Chefe da PJM de São Luís/MA", l: "Maranhão", p: "Seminário", img: "Diogo.png" }
             ],
             contatos: [
                 { superHeader: "MARANHÃO" },
@@ -505,20 +525,39 @@
             const body = document.getElementById('modal-body');
             document.getElementById('modal-title').innerText = "Minuta Detalhada";
             
+            // Busca palestrante na lista de convidados para exibir foto e cargo
+            let speakerInfo = null;
+            if (event.speaker) {
+                speakerInfo = logistics.convidados.find(c => c.n.toUpperCase().includes(event.speaker.split(' ').pop().toUpperCase()) || event.speaker.includes(c.n));
+            }
+
             body.innerHTML = `
                 <div class="space-y-6">
                     <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex justify-between">
                         <div class="text-left"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1 text-left">Hora Local</p><span class="text-navy font-black text-lg"><i class="fas fa-clock text-gold mr-2"></i>${event.time}</span></div>
                         <div class="text-right"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1 text-right">Uniforme</p><span class="bg-navy text-white px-4 py-1.5 rounded-xl font-bold text-[11px] uppercase">${event.uni}</span></div>
                     </div>
+
+                    ${speakerInfo ? `
+                    <div class="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm text-center">
+                        <div class="photo-frame-lg">
+                            <img src="${speakerInfo.img}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(speakerInfo.n)}&background=0c1c38&color=FFD700'" alt="${speakerInfo.n}">
+                        </div>
+                        <p class="text-[11px] font-bold text-gold uppercase tracking-widest mb-1">Palestrante</p>
+                        <h5 class="text-lg font-black text-navy uppercase leading-tight">${speakerInfo.n}</h5>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 leading-tight">${speakerInfo.f}</p>
+                    </div>
+                    ` : ''}
+
                     <div class="text-left">
                         <p class="text-[11px] font-bold text-slate-400 uppercase mb-1 text-left">Atividade</p>
                         <p class="text-2xl font-extrabold text-navy leading-tight mb-2 text-left">${event.title}</p>
                         ${event.theme ? `<p class="text-sm text-slate-600 italic font-medium text-left">"${event.theme}"</p>` : ''}
+                        ${event.speaker && !speakerInfo ? `<p class="font-bold text-navy uppercase text-sm mt-2">${event.speaker}</p>` : ''}
                     </div>
+                    
                     <div class="bg-white p-6 rounded-[32px] border-l-8 border-gold shadow-sm">
                         <p class="text-[11px] font-bold text-gold uppercase mb-4 tracking-widest text-left">Observações Transcritas</p>
-                        ${event.speaker ? `<p class="font-bold mb-4 text-navy text-center text-lg uppercase">${event.speaker}</p>` : ''}
                         <div class="text-[15px] leading-relaxed font-medium text-slate-700 text-left whitespace-pre-wrap">
                             ${event.desc || 'Nenhuma observação constante no cronograma oficial.'}
                         </div>
@@ -541,7 +580,7 @@
                 ];
                 unis.forEach(u => content += `<div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 text-left"><p class="font-extrabold text-navy mb-2 text-xs uppercase tracking-widest border-b pb-2 text-left">${u.t}</p><p class="text-[15px] text-slate-600 font-medium text-left">${u.d}</p></div>`);
             } else if (type === 'convidados') {
-                document.getElementById('modal-title').innerText = "Convidados do Seminário";
+                document.getElementById('modal-title').innerText = "Palestrantes e Convidados";
                 logistics.convidados.forEach(h => content += `
                     <div class="bg-white p-5 rounded-[24px] border border-slate-100 mb-4 flex gap-4 items-center text-left">
                         <div class="photo-frame">
@@ -550,7 +589,10 @@
                         <div class="flex-grow">
                             <p class="font-bold text-navy text-base uppercase leading-tight text-left">${h.n}</p>
                             <p class="text-[10px] text-slate-400 font-bold uppercase mt-1 leading-tight text-left">${h.f}</p>
-                            <div class="mt-2 text-[9px] font-black text-gold uppercase tracking-tighter text-left">${h.p}</div>
+                            <div class="flex items-center gap-3 mt-2">
+                                <span class="text-[8px] font-black bg-gold/10 text-navy px-2 py-0.5 rounded-md uppercase tracking-tighter">${h.p}</span>
+                                <span class="text-[9px] font-bold text-slate-400 italic"><i class="fas fa-location-dot mr-1"></i>${h.l}</span>
+                            </div>
                         </div>
                     </div>`);
             } else if (type === 'motoristas') {
