@@ -375,7 +375,7 @@
             convidados: [
                 { n: "Dr. Péricles Aurélio Lima de Queiroz", f: "Ministro do STM e Diretor da ENAJUM", l: "Brasília-DF", p: "Seminário", img: "Pericles.png" },
                 { n: "Dr. Clauro Roberto de Bortolli", f: "Procurador-Geral de Justiça Militar", l: "Brasília-DF", p: "Seminário", img: "Clauro.png" },
-                { n: "Gen. Bda. ROBERVAL DE ALMEIDA", f: "Cmt. da 22ª Bda Inf Sl", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
+                { n: "Gen. Bda. ROBERVAL DE ALMEIDA", f: "Comandante da 22ª Brigada de Infantaria de Selva", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
                 { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" }
             ],
             contatos: [
@@ -476,6 +476,18 @@
             const ciaClass = isAzul ? 'pass-azu' : 'pass-lan';
             const bgClass = isAzul ? 'bg-azu' : 'bg-lan';
 
+            // Mapeamento de siglas de aeroportos
+            let siglaOrig = "ORIG";
+            let siglaDest = "DEST";
+
+            if (flightCode.includes('2620')) {
+                siglaOrig = "BEL"; siglaDest = "SLZ";
+            } else if (flightCode.includes('3492')) {
+                siglaOrig = "THE"; siglaDest = "FOR";
+            } else if (flightCode.includes('3524')) {
+                siglaOrig = "FOR"; siglaDest = "BEL";
+            }
+
             body.innerHTML = `
                 <div class="boarding-pass ${ciaClass}">
                     <div class="pass-header ${bgClass} flex justify-between items-center text-left">
@@ -487,9 +499,15 @@
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-6">
-                            <div class="text-center"><p class="text-3xl font-black text-navy">ORIG</p><p class="text-[9px] text-slate-400 font-bold uppercase">Origem</p></div>
+                            <div class="text-center">
+                                <p class="text-3xl font-black text-navy">${siglaOrig}</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase">Origem</p>
+                            </div>
                             <i class="fas fa-plane text-slate-200"></i>
-                            <div class="text-center"><p class="text-3xl font-black text-navy">DEST</p><p class="text-[9px] text-slate-400 font-bold uppercase">Destino</p></div>
+                            <div class="text-center">
+                                <p class="text-3xl font-black text-navy">${siglaDest}</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase">Destino</p>
+                            </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 border-t border-slate-50 pt-4 text-left">
                             <div><p class="text-[9px] text-slate-400 font-bold uppercase">Voo</p><p class="font-black text-navy">${flightCode}</p></div>
