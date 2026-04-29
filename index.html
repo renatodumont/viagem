@@ -277,7 +277,7 @@
         // --- FUNÇÕES AUXILIARES ---
         function getMapsLink(loc) {
             const l = loc.toLowerCase();
-            if (l.includes("belém")) return "https://maps.app.goo.gl/3aaGjB8rjDUegxqt5";
+            if (l.includes("belém")) return "https://maps.app.goo.gl/fMyNu7TwFCRZPhDv5";
             if (l.includes("são luiz") || l.includes("são luís")) return "https://www.google.com/maps/search/?api=1&query=Aeroporto+Internacional+de+São+Luís+-+Marechal+Cunha+Machado";
             if (l.includes("hotel premier")) return "https://www.google.com/maps/search/?api=1&query=Hotel+Premier+São+Luís";
             if (l.includes("ufma") || l.includes("prédio histórico")) return "https://www.google.com/maps/search/?api=1&query=Faculdade+de+Direito+UFMA+São+Luís";
@@ -296,8 +296,8 @@
         const schedule = [
             { label: "29 ABR", date: "2026-04-29", events: [
                 { id: "e1", time: "11h15", title: "Almoço", loc: "Residência", uni: "Passeio", desc: "XXX" },
-                { id: "e2", time: "11h45", title: "Deslocamento para o Aeroporto Internacional de Belém", loc: "Aeroporto de Belém", uni: "Passeio", type: "car", desc: "XXX" },
-                { id: "e3", time: "13h20", title: "Decolagem voo Azul AZU2620", loc: "Aeroporto de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AZU 2620 BEL (13h20) x SLZ (14h25). Localizador: HLP5WJ" },
+                { id: "e2", time: "11h45", title: "Deslocamento para o Aeroporto Internacional de Belém", loc: "Aeroporto Internacional de Belém", uni: "Passeio", type: "car", desc: "XXX" },
+                { id: "e3", time: "13h20", title: "Decolagem voo Azul AZU2620", loc: "Aeroporto Internacional de Belém", uni: "Passeio", flight: "AZU2620", type: "plane", desc: "Voo Azul AZU 2620 BEL (13h20) x SLZ (14h25). Localizador: HLP5WJ" },
                 { id: "e4", time: "14h25", title: "Chegada ao Aeroporto de São Luiz - MA", loc: "Aeroporto de São Luiz - MA", uni: "Passeio", desc: "" },
                 { id: "e5", time: "15h30", title: "Deslocamento para Hotel Premier", loc: "Hotel Premier", uni: "Passeio", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
                 { id: "e6", time: "15h40", title: "Check-In", loc: "Hotel Premier", uni: "Passeio", desc: "" },
@@ -361,7 +361,7 @@
                 { id: "e54", time: "10h00", title: "Chegada ao Aeroporto de Teresina - PI", loc: "Aeroporto de Teresina", uni: "Passeio", desc: "Voo LAN LAN 3492 Localizador: AAHZSR\nVoo LAN LAN 3524 Localizador: AAHZSR" },
                 { id: "e55", time: "12h15", title: "Decolagem voo LAN LAN3492", loc: "Aeroporto de Teresina", uni: "Passeio", flight: "LAN3492", type: "plane", desc: "Voo THE (12h15) x FOR (13h25). Localizador: AAHZSR" },
                 { id: "e56", time: "14h30", title: "Decolagem voo LAN LAN3524", loc: "Aeroporto Fortaleza", uni: "Passeio", flight: "LAN3524", type: "plane", desc: "Voo FOR (14h30) x BEL (16h30). Localizador: AAHZSR" },
-                { id: "e57", time: "16h30", title: "Chegada ao Aeroporto de Belém", loc: "Aeroporto de Belém", uni: "Passeio", type: "clock", desc: "Fim do programa oficial de viagem." }
+                { id: "e57", time: "16h30", title: "Chegada ao Aeroporto Internacional de Belém", loc: "Aeroporto Internacional de Belém", uni: "Passeio", type: "clock", desc: "Fim do programa oficial de viagem." }
             ]}
         ];
 
