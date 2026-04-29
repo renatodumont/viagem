@@ -340,7 +340,7 @@
                 { id: "e34", time: "20h", title: "Jantar", loc: "Restaurante Praianos", uni: "Esporte Amazônico", desc: "Participantes: DN-02, CP-01, Oficiais da CPPI com familiares, por adesão.\nViaturas: Yaris" }
             ]},
             { label: "02 MAI", date: "2026-05-02", events: [
-                { id: "e35", time: "08h40", title: "Deslocamento para a CPPI", loc: "CPPI", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
+                { id: "e35", time: "08h40", title: "Deslocamento para the CPPI", loc: "CPPI", uni: "OP3", type: "car", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
                 { id: "e36", time: "09h00", title: "Café da Manhã", loc: "CPPI", uni: "OP3", desc: "Participantes: DN-02 e CP-01 e Oficiais da CPPI e Sr Anísio Neves (Presidente da SOAMAR-PI)" },
                 { id: "e37", time: "10h30", title: "Deslocamento para Companhia Porto Piauí", loc: "Companhia Porto Piauí", uni: "OP3", type: "car", desc: "Tempo de deslocamento: 25 minutos" },
                 { id: "e38", time: "11h00", title: "Visita ao Terminal Pesqueiro", loc: "Companhia Porto Piauí", uni: "OP3", desc: "Participantes: DN-02 e CP-01.\nViatura: Yaris" },
@@ -373,10 +373,10 @@
         const logistics = {
             vtrs: [ { auth: "DN-02 / Comitiva", model: "Toyota Yaris", plate: "SZM-9A22", mot: "A definir", tel: "91900000000" } ],
             convidados: [
-                { n: "Dr. Péricles Aurélio Lima de Queiroz", f: "Ministro do STM e Diretor da ENAJUM", l: "Brasília-DF", p: "Seminário", img: "Pericles.png" },
-                { n: "Dr. Clauro Roberto de Bortolli", f: "Procurador-Geral de Justiça Militar", l: "Brasília-DF", p: "Seminário", img: "Clauro.png" },
-                { n: "Gen. Bda. ROBERVAL DE ALMEIDA", f: "Cmt. da 22ª Bda Inf Sl", l: "Maranhão", p: "Seminário", img: "Roberval.png" },
-                { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "Jose.png" }
+                { n: "Dr. Péricles Aurélio Lima de Queiroz", f: "Ministro do STM e Diretor da ENAJUM", l: "Brasília-DF", p: "Seminário", img: "" },
+                { n: "Dr. Clauro Roberto de Bortolli", f: "Procurador-Geral de Justiça Militar", l: "Brasília-DF", p: "Seminário", img: "" },
+                { n: "Gen. Bda. ROBERVAL DE ALMEIDA", f: "Cmt. da 22ª Bda Inf Sl", l: "Maranhão", p: "Seminário", img: "" },
+                { n: "C. Alte. José Fabio Carneiro da Silva", f: "Chefe do Estado-Maior do Com4ºDN", l: "Belém-PA", p: "Seminário", img: "" }
             ],
             contatos: [
                 { superHeader: "MARANHÃO" },
@@ -509,8 +509,11 @@
             
             let speakerInfo = null;
             if (event.speaker) {
-                const searchName = event.speaker.split(' ').pop().toUpperCase();
-                speakerInfo = logistics.convidados.find(c => c.n.toUpperCase().includes(searchName));
+                const searchName = event.speaker.toUpperCase().trim();
+                speakerInfo = logistics.convidados.find(c => {
+                    const normalizedC = c.n.toUpperCase().trim();
+                    return searchName.includes(normalizedC) || normalizedC.includes(searchName);
+                });
             }
 
             let formattedDesc = "Nenhuma observação constante no programa.";
@@ -590,6 +593,7 @@
                         content += `<div class="bg-slate-50 p-2 pl-4 text-navy font-bold text-[9px] uppercase border-y">${t.header}</div>`;
                     } else {
                         const cleanPhone = t.phone.replace(/\D/g, '');
+                        const isHotel = t.name.toLowerCase().includes('hotel');
                         content += `
                         <div class="p-4 border-b border-slate-50 flex justify-between items-center">
                             <div class="text-left">
@@ -600,9 +604,10 @@
                                 <a href="tel:${t.phone}" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-navy hover:bg-navy hover:text-white transition-colors">
                                     <i class="fas fa-phone-alt"></i>
                                 </a>
+                                ${!isHotel ? `
                                 <a href="https://wa.me/55${cleanPhone}" target="_blank" class="w-10 h-10 bg-whatsapp/10 rounded-full flex items-center justify-center text-whatsapp hover:bg-whatsapp hover:text-white transition-colors">
                                     <i class="fab fa-whatsapp text-lg"></i>
-                                </a>
+                                </a>` : ''}
                             </div>
                         </div>`;
                     }
